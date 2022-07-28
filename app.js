@@ -16,10 +16,26 @@ app.use(bodyParser.json());
 
 // import routers
 
+const   homeRouter = require("./routes/home.route"),
+        adminRouter = require("./routes/admin.route"),
+        cartRouter = require("./routes/cart.route"),
+        ordersRouter = require("./routes/orders.route"),
+        authRouter = require("./routes/auth.route");
 
+// use routers
+
+app.use("/api/products", homeRouter);
+
+app.use("/api/admin/manage-orders", adminRouter);
+
+app.use("/api/cart", cartRouter);
+
+app.use("/api/orders", ordersRouter);
+
+app.use("/api/auth", authRouter);
 
 // create server and running it
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`The Server Is Running On: http://localhost:${port}`))
+app.listen(port, () => console.log(`The Server Is Running On: http://localhost:${port}`));
