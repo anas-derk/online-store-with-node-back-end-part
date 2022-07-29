@@ -20,7 +20,8 @@ const   homeRouter = require("./routes/home.route"),
         adminRouter = require("./routes/admin.route"),
         cartRouter = require("./routes/cart.route"),
         ordersRouter = require("./routes/orders.route"),
-        authRouter = require("./routes/auth.route");
+        authRouter = require("./routes/auth.route"),
+        productInfoRouter = require("./routes/productInfo.route");
 
 // use routers
 
@@ -33,6 +34,8 @@ app.use("/api/cart", cartRouter);
 app.use("/api/orders", ordersRouter);
 
 app.use("/api/auth", authRouter);
+
+app.use("/api/productInfo", productInfoRouter);
 
 // create server and running it
 

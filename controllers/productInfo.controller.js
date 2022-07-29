@@ -2,19 +2,13 @@ const productObject = require("../models/product.model")
 
 function getProductInfo(req, res) {
 
-    let productId = req.params.id
+    let productId = req.params.productId;
 
     productObject.get_product_info_by_id(productId).then(productInfo => {
 
-        res.render("ProductInfo/index", {
-            productInfo,
-            isUser: req.session.userId,
-            isAdmin: req.session.isAdmin,
-            pageTitle: "Product Info Page - Online Store"
-        })
+        res.json(productInfo);
 
-    })
-
+    }).catch(err => res.json(err));
 }
 
 function postAddProduct(req, res) {

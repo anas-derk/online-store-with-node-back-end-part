@@ -1,7 +1,7 @@
-const productInfoRouter = require("express").Router()
+const productInfoRouter = require("express").Router();
 
-const productInfoController = require("../controllers/productInfo.controller")
+const productInfoController = require("../controllers/productInfo.controller");
 
-productInfoRouter.get("/:id", productInfoController.getProductInfo)
+productInfoRouter.get("/:productId", productInfoController.getProductInfo);
 
-module.exports = productInfoRouter
+module.exports = productInfoRouter;
