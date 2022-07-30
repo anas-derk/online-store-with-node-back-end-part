@@ -39,6 +39,6 @@ app.use("/api/productInfo", productInfoRouter);
 
 // create server and running it
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`The Server Is Running On: http://localhost:${port}`));
