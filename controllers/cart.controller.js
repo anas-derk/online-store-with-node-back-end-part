@@ -1,8 +1,10 @@
 const cartObject = require("../models/cart.model");
 
-function getCartPage(req, res) {
+function getCartsByUserId(req, res) {
 
-    cartObject.getCartsByUserId(req.session.userId).then(carts => {
+    let userId = req.query.userId;
+
+    cartObject.getCartsByUserId(userId).then(carts => {
 
         res.json(carts);
 
@@ -12,43 +14,33 @@ function getCartPage(req, res) {
 
 function postCart(req, res) {
 
-    cartObject.add_new_item({
+    let item = req.body;
 
-        name: req.body.name,
+    cartObject.add_new_item(item)
+        
+    .then(() => {
 
-        price: req.body.price,
-
-        amount: req.body.amount,
-
-        productId: req.body.productId,
-
-        userId: req.session.userId,
-
-        timestamp: Date.now()
-
-    }).then(() => {
-
-        res.redirect("/cart")
+        res.json();
 
     }).catch(err => {
 
-        res.redirect("/errors")
+        console.log(err);
 
-    })
+    });
 
 }
 
-function postSave(req, res) {
+function putSave(req, res) {
 
-    cartObject.editItem(req.body.productId, req.body.amount).then(() => {
+    cartObject.editItem(req.params.productId, req.body.newAmount).then(() => {
 
-        res.redirect("/cart")
+        res.json(null);
 
     }).catch(err => {
 
-        res.redirect("/errors")
+        console.log(err);
 
-    })
+    });
 
 }
 
@@ -125,10 +117,10 @@ function postOrderAll(req, res) {
 }
 
 module.exports = {
-    getCartPage,
+    getCartsByUserId,
     postCart,
     postDelete,
-    postSave,
+    putSave,
     postDeleteAll,
     postOrder,
     postOrderAll,

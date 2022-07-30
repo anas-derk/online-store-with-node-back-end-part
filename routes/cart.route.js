@@ -2,11 +2,11 @@ const cartRouter = require("express").Router();
 
 const cartController = require("../controllers/cart.controller");
 
-cartRouter.get("/", cartController.getCartPage);
+cartRouter.get("/", cartController.getCartsByUserId);
 
-cartRouter.post("/cart", cartController.postCart);
+cartRouter.post("/", cartController.postCart);
 
-cartRouter.post("/save", cartController.postSave);
+cartRouter.put("/save/:productId", cartController.putSave);
 
 cartRouter.post("/order", cartController.postOrder);
 

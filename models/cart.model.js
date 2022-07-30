@@ -6,7 +6,10 @@ const cartSchema = mongoose.Schema({
     amount: Number,
     productId: String,
     userId: String,
-    timestamp: Date
+    timestamp: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 const cartModel = mongoose.model("cart", cartSchema);
@@ -60,7 +63,7 @@ function getCartsByUserId(userId) {
 
         mongoose.connect(DB_URL).then(() => {
 
-            return cartModel.find({ userId: userId });
+            return cartModel.find({ userId });
 
         }).then(carts => {
 
@@ -112,7 +115,7 @@ function editItem(productId, newAmount) {
 
         mongoose.connect(DB_URL).then(() => {
 
-            return cartModel.updateOne({ productId: productId }, { amount: newAmount });
+            return cartModel.updateOne({ productId }, { amount: newAmount });
 
         }).then(() => {
 
