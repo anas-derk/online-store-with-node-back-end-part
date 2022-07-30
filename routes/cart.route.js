@@ -10,8 +10,6 @@ cartRouter.put("/save/:productId", cartController.putSave);
 
 cartRouter.post("/order", cartController.postOrder);
 
-cartRouter.get("/verify-orders", cartController.getVerifyOrdersPage);
-
 cartRouter.post("/delete", cartController.postDelete);
 
 cartRouter.post("/delete-all", cartController.postDeleteAll);

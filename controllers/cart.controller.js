@@ -66,21 +66,7 @@ function postOrder(req, res) {
 
         res.redirect("/cart/verify-orders")
 
-    }).catch(err => res.redirect("/errors") )
-
-}
-
-function getVerifyOrdersPage(req, res) {
-
-    res.render("VerifyOrders/index", {
-
-        isUser: true,
-
-        isAdmin: req.session.isAdmin,
-
-        pageTitle: "Verify Orders Page - Online Store"
-    
-    })
+    }).catch(err => console.log(err) );
 
 }
 
@@ -123,6 +109,5 @@ module.exports = {
     putSave,
     postDeleteAll,
     postOrder,
-    postOrderAll,
-    getVerifyOrdersPage
+    postOrderAll
 }

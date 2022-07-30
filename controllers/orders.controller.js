@@ -1,64 +1,28 @@
 const orderObject = require("../models/orders.model")
 
-function getOrdersPage(req, res) {
+function getOrders(req, res) {
 
-    orderObject.getOrdersByUserId(req.session.userId).then(orders => {
+    orderObject.getOrdersByUserId(req.query.userId).then(orders => {
 
-        res.render("Orders/index", {
+        res.json(orders);
 
-            orders: orders,
-
-            isUser: true,
-
-            isAdmin: req.session.isAdmin,
-
-            pageTitle: "Orders Page - Online Store"
-
-        })
-
-    }).catch(err => res.redirect("/errors"))
+    }).catch(err => console.log(err));
 
 }
 
 function postOrder(req, res) {
 
-    let productInfo = req.flash("productInfo")[0]
+    let productInfo = req.body.productInfo;
 
-    if (productInfo !== undefined) {
+    let address = req.body.address;
 
-        productInfo.address = req.body.address
+    let orderInfo = {...productInfo, time: Date.now(), address};    
 
-        productInfo.time = Date.now()
+    orderObject.addNewOrder(orderInfo).then(() => {
 
-        let orderInfo = productInfo
+        res.json(null);
 
-        orderObject.addNewOrder(orderInfo).then(() => {
-
-            res.redirect("/orders")
-
-        }).catch(err => res.redirect("/errors"))
-
-    } else {
-
-        let productsInfo = req.flash("productsInfo")
-
-        for (let i = 0; i < productsInfo.length; i++) {
-
-            productsInfo[i].address = req.body.address
-
-            productsInfo[i].time = Date.now()
-
-        }
-
-        let ordersInfo = productsInfo
-
-        orderObject.addAllOrders(ordersInfo).then(() => {
-
-            res.redirect("/orders")
-
-        }).catch(err => res.redirect("/errors"))
-
-    }
+    }).catch(err => console.log(err));
 
 }
 
@@ -82,4 +46,4 @@ function postCancelAll(req, res) {
 
 }
 
-module.exports = { getOrdersPage, postOrder, postOrderCancel, postCancelAll }
+module.exports = { getOrders, postOrder, postOrderCancel, postCancelAll }
