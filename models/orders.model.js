@@ -102,17 +102,13 @@ function orderCancel(orderId) {
 
 }
 
-function orders_all_cancel(userId) {
+function all_orders_cancel(userId) {
 
     return new Promise((resolve, reject) => {
 
         mongoose.connect(DB_URL).then(() => {
 
             return orderModel.deleteMany({ userId });
-
-        }).then(() => {
-
-            return cartObject.cartModel.deleteMany({ userId });
 
         }).then(() => {
 
@@ -240,7 +236,7 @@ module.exports = {
     addNewOrder,
     getOrdersByUserId,
     orderCancel,
-    orders_all_cancel,
+    all_orders_cancel,
     addAllOrders,
     getAllOrders,
     orderStatusEdit,

@@ -8,6 +8,6 @@ ordersRouter.post("/", ordersCotroller.postOrder);
 
 ordersRouter.delete("/cancel/:orderId", ordersCotroller.deleteOrder);
 
-ordersRouter.post("/cancel-all", ordersCotroller.deleteAllOrders);
+ordersRouter.delete("/cancel-all/:userId", ordersCotroller.deleteAllOrders);
 
 module.exports = ordersRouter;

@@ -38,11 +38,11 @@ function deleteOrder(req, res) {
 
 function deleteAllOrders(req, res) {
 
-    orderObject.orders_all_cancel(req.session.userId).then(() => {
+    orderObject.all_orders_cancel(req.params.userId).then(() => {
 
-        res.redirect("/orders")
+        res.json(null);
 
-    }).catch(err => res.redirect("/errors"))
+    }).catch(err => console.log(err));
 
 }
 
