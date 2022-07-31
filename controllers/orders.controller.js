@@ -26,17 +26,17 @@ function postOrder(req, res) {
 
 }
 
-function postOrderCancel(req, res) {
+function deleteOrder(req, res) {
 
-    orderObject.orderCancel(req.body.productId, req.session.userId).then(() => {
+    orderObject.orderCancel(req.params.orderId).then(() => {
 
-        res.redirect("/orders")
+        res.json(null);
 
-    }).catch(err => res.redirect("/errors"))
+    }).catch(err => console.log(err));
 
 }
 
-function postCancelAll(req, res) {
+function deleteAllOrders(req, res) {
 
     orderObject.orders_all_cancel(req.session.userId).then(() => {
 
@@ -46,4 +46,4 @@ function postCancelAll(req, res) {
 
 }
 
-module.exports = { getOrders, postOrder, postOrderCancel, postCancelAll }
+module.exports = { getOrders, postOrder, deleteOrder, deleteAllOrders }

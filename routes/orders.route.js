@@ -6,8 +6,8 @@ ordersRouter.get("/", ordersCotroller.getOrders);
 
 ordersRouter.post("/", ordersCotroller.postOrder);
 
-ordersRouter.post("/cancel", ordersCotroller.postOrderCancel);
+ordersRouter.delete("/cancel/:orderId", ordersCotroller.deleteOrder);
 
-ordersRouter.post("/cancel-all", ordersCotroller.postCancelAll);
+ordersRouter.post("/cancel-all", ordersCotroller.deleteAllOrders);
 
 module.exports = ordersRouter;

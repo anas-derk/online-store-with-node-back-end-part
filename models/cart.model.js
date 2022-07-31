@@ -83,13 +83,13 @@ function getCartsByUserId(userId) {
 
 }
 
-function deleteItem(productId, userId) {
+function deleteItem(cartId) {
 
     return new Promise((resolve, reject) => {
 
         mongoose.connect(DB_URL).then(() => {
 
-            return cartModel.deleteOne({ productId: productId, userId: userId });
+            return cartModel.deleteOne({ _id: cartId });
 
         }).then(() => {
 

@@ -8,12 +8,8 @@ cartRouter.post("/", cartController.postCart);
 
 cartRouter.put("/save/:productId", cartController.putSave);
 
-cartRouter.post("/order", cartController.postOrder);
+cartRouter.delete("/delete/:cartId", cartController.deleteItem);
 
-cartRouter.post("/delete", cartController.postDelete);
-
-cartRouter.post("/delete-all", cartController.postDeleteAll);
-
-cartRouter.post("/order-all", cartController.postOrderAll);
+cartRouter.delete("/delete-all/:userId", cartController.delete_all_items);
 
 module.exports = cartRouter;

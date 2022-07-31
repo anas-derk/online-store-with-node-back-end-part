@@ -76,17 +76,13 @@ function getOrdersByUserId(userId) {
 
 }
 
-function orderCancel(productId, userId) {
+function orderCancel(orderId) {
 
     return new Promise((resolve, reject) => {
 
         mongoose.connect(DB_URL).then(() => {
 
-            return orderModel.deleteOne({ productId, userId });
-
-        }).then(() => {
-
-            return cartObject.deleteItem(productId, userId);
+            return orderModel.deleteOne({ _id: orderId });
 
         }).then(() => {
 
@@ -96,13 +92,13 @@ function orderCancel(productId, userId) {
 
         }).catch(err => {
 
-            mongoose.disconnect()
+            mongoose.disconnect();
 
             reject(err);
 
-        })
+        });
 
-    })
+    });
 
 }
 
