@@ -128,7 +128,7 @@ function all_orders_cancel(userId) {
 
 }
 
-function addAllOrders(orders) {
+function order_all_items(orders) {
 
     return new Promise((resolve, reject) => {
 
@@ -237,7 +237,7 @@ module.exports = {
     getOrdersByUserId,
     orderCancel,
     all_orders_cancel,
-    addAllOrders,
+    order_all_items,
     getAllOrders,
     orderStatusEdit,
     getOrdersByStatus,
