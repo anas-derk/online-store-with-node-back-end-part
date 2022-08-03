@@ -25,9 +25,9 @@ adminRouter.get("/add-product", adminController.getAddProductPage);
 //     productController.postAddProduct
 // );
 
-adminRouter.post(
-    "/manage-orders/order-status-edit",
-    adminController.post_order_status_edit
+adminRouter.put(
+    "/manage-orders/edit-order-status/:orderId",
+    adminController.put_order_status_edit
 );
 
 adminRouter.get("/manage-orders/orders/all-orders", adminController.getAllOrders);

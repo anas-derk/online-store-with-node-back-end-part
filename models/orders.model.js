@@ -180,13 +180,13 @@ function getAllOrders() {
 
 }
 
-function orderStatusEdit(productId, newStatus) {
+function orderStatusEdit(orderId, newOrderStatus) {
 
     return new Promise((resolve, reject) => {
 
         mongoose.connect(DB_URL).then(() => {
 
-            return orderModel.updateOne({ productId }, { status: newStatus });
+            return orderModel.updateOne({ _id: orderId }, { status: newOrderStatus });
 
         }).then(() => {
 

@@ -16,9 +16,9 @@ function getAllOrders(req, res) {
 
 }
 
-function post_order_status_edit(req, res) {
+function put_order_status_edit(req, res) {
 
-    ordersObject.orderStatusEdit(req.body.productId, req.body.orderStatus).then(() => {
+    ordersObject.orderStatusEdit(req.params.orderId, req.body.newOrderStatus).then(() => {
 
         res.json();
 
@@ -39,6 +39,6 @@ function getSpecificOrders(req, res) {
 module.exports = {
     getAddProductPage,
     getAllOrders,
-    post_order_status_edit,
+    put_order_status_edit,
     getSpecificOrders
 }
