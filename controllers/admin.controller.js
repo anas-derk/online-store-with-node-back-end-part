@@ -6,7 +6,7 @@ function getAddProductPage(req, res) {
 
 }
 
-function getManageOrdersPage(req, res) {
+function getAllOrders(req, res) {
 
     ordersObject.getAllOrders().then(orders => {
 
@@ -26,31 +26,11 @@ function post_order_status_edit(req, res) {
 
 }
 
-function getPendingOrders(req, res) {
+function getSpecificOrders(req, res) {
 
-    ordersObject.getOrdersByStatus("Pending").then(orders => {
-
-        res.json(orders);
-
-    }).catch(err => res.json(err));
-
-}
-
-function getSentOrders(req, res) {
-
-    ordersObject.getOrdersByStatus("Sent").then(orders => {
+    ordersObject.getOrdersByStatus(req.query.orderStatus).then(orders => {
 
         res.json(orders);
-
-    }).catch(err => res.json(err));
-
-}
-
-function getCompletedOrders(req, res) {
-
-    ordersObject.getOrdersByStatus("Completed").then(orders => {
-
-        res.json(err);
 
     }).catch(err => res.json(err));
 
@@ -58,9 +38,7 @@ function getCompletedOrders(req, res) {
 
 module.exports = {
     getAddProductPage,
-    getManageOrdersPage,
+    getAllOrders,
     post_order_status_edit,
-    getPendingOrders,
-    getSentOrders,
-    getCompletedOrders
+    getSpecificOrders
 }

@@ -30,7 +30,7 @@ function postOrderAll(req, res) {
 
     let carts = req.body.carts;
 
-    let address = req.body.address;
+    let address = req.body.generalAddress;
 
     let ordersInfoList = [];
     

@@ -27,7 +27,7 @@ const   homeRouter = require("./routes/home.route"),
 
 app.use("/api/products", homeRouter);
 
-app.use("/api/admin/manage-orders", adminRouter);
+app.use("/api/admin", adminRouter);
 
 app.use("/api/cart", cartRouter);
 

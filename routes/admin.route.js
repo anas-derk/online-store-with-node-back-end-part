@@ -25,19 +25,13 @@ adminRouter.get("/add-product", adminController.getAddProductPage);
 //     productController.postAddProduct
 // );
 
-adminRouter.get("/manage-orders", adminController.getManageOrdersPage);
-
 adminRouter.post(
     "/manage-orders/order-status-edit",
     adminController.post_order_status_edit
 );
 
-adminRouter.get("/all-orders", adminController.getManageOrdersPage);
+adminRouter.get("/manage-orders/orders/all-orders", adminController.getAllOrders);
 
-adminRouter.get("/pending-orders", adminController.getPendingOrders);
-
-adminRouter.get("/sent-orders", adminController.getSentOrders);
-
-adminRouter.get("/completed-orders", adminController.getCompletedOrders);
+adminRouter.get("/manage-orders/orders/specific-orders", adminController.getSpecificOrders);
 
 module.exports = adminRouter;
