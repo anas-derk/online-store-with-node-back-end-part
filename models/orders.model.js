@@ -34,6 +34,10 @@ function addNewOrder(orderInfo) {
 
         }).then(() => {
 
+            return mongoose.models.cart.deleteOne({productId: orderInfo.productId, userId: orderInfo.userId})
+
+        }).then(() => {
+
             mongoose.disconnect();
 
             resolve();
@@ -108,7 +112,7 @@ function all_orders_cancel(userId) {
 
         mongoose.connect(DB_URL).then(() => {
 
-            return orderModel.deleteMany({ userId });
+            return orderModel.deleteMany({ userId, status: "Pending" });
 
         }).then(() => {
 
@@ -135,6 +139,10 @@ function order_all_items(orders) {
         mongoose.connect(DB_URL).then(() => {
 
             return orderModel.insertMany(orders);
+
+        }).then(() => {
+
+            return mongoose.models.cart.deleteMany({userId: orders[0].userId});
 
         }).then(() => {
 
